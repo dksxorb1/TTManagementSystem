@@ -14,31 +14,30 @@ public class TravalManagementSystem {
 		System.out.println("4. View Travel ");
 		System.out.println("5. Show a menu ");
 		System.out.println("6. Exit");
-		System.out.println("Select one number between 1 - 5");
+		System.out.println("Select one number between 1 - 6");
 		num = input.nextInt();
-		switch(num) {
-		case 1:
-		
-			System.out.println("어디로 떠나시나요?");
-			String Contry =input.next();	
-			break;
-		case 2:
-			
-			System.out.println("어디로 떠나시나요?");
-			String Contry1 =input.next();	
-			break;
-		case 3:
-			
-			System.out.println("어디로 떠나시나요?");
-			String Contry2 =input.next();	
-			break;
-		case 4:
-			
-			System.out.println("어디로 떠나시나요?");
-			String Contry3 =input.next();	
-			break;
-			
-		}
-  }
- }
-}
+	    if(num==1) {
+	    	addTravel();
+	    }
+    }
+}		
+	public static void addTravel() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("어디로 여행을 떠나실건가요?");
+		String country = input.next();
+		System.out.println("몇일을 가실 건가요?");
+		int day = input.nextInt();
+		System.out.println("그 나라의 어떤 음식을 드시고 싶나요?");
+		String food = input.next();
+		System.out.println("하고 싶은 활동들은 무엇이 있나요?");
+		String activity = input.next();
+		System.out.println(country);
+		System.out.println(day);
+		System.out.println(food);
+		System.out.println(activity);
+	}
+
+        	
+        	
+        	
+        }
