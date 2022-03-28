@@ -19,6 +19,18 @@ public class TravalManagementSystem {
 	    if(num==1) {
 	    	addTravel();
 	    }
+	    else if(num==2) {
+	    	deleteTravel();
+	    }
+	    else if(num==3) {
+	    	editTravel();
+	    }
+	    else if(num==4) {
+	    	viewTravel();
+	    }
+	    else {
+	    	continue;
+	    }
     }
 }		
 	public static void addTravel() {
@@ -36,8 +48,30 @@ public class TravalManagementSystem {
 		System.out.println(food);
 		System.out.println(activity);
 	}
-
+	public static void deleteTravel() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("어디로 여행을 떠나실건가요?");
+		String country = input.next();
         	
         	
         	
         }
+	public static void editTravel() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("어디로 여행을 떠나실건가요?");
+		String country = input.next();
+		
+		
+	}
+     public static void viewTravel() {
+    	 Scanner input = new Scanner(System.in);
+ 		System.out.println("어디로 여행을 떠나실건가요?");
+ 		String country = input.next();
+		
+		
+	}
+}
+	
+	
+	
+	
