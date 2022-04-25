@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 import java.util.Scanner;
+import TraveL.Travel;
 
 public class TravelManager {
-	Travel travel;
+	ArrayList <Travel> travels = new ArrayList<Travel>();
 	
 	Scanner input;
 	
@@ -10,49 +12,112 @@ public class TravelManager {
 		
 	}
 	public void addTravel() {
-		travel = new Travel();
-	
-		System.out.print("어디로 여행을 떠나실건가요?");
-		travel.country = input.next();
-		System.out.print("몇일을 가실 건가요?");
-		travel.day = input.nextInt();
-		System.out.print("그 나라의 어떤 음식을 드시고 싶나요?");
-		travel.food = input.next();
-		System.out.print("하고 싶은 활동들은 무엇이 있나요?");
-		travel.activity = input.next();
+		int kind = 0;
+		Travel travel;
+		while(kind != 1 && kind!=2) {
+		 System.out.println("1 for Asia");
+		 System.out.println("2 for Europe");
+		 System.out.println("Select num for Travel Kind between 1 and 2: ");
+		 kind = input.nextInt();
+		 if(kind==1) {
+			  travel = new Travel();
+			  travel.getUserInput(input);
+			  travels.add(travel);	
+			 break;
+		 }
+		 else if(kind==2) {
+			 travel = new Travel();
+			 travel.getUserInput(input);
+			 travels.add(travel);	
+			 break;
+		 }
+		 else {
+			 System.out.println("Select num for Travel Kind between 1 and 2: ");
+			 
+		 }
+		}
+		
 	}
 	public void deleteTravel() {
         System.out.print("어디로 여행을 떠나실건가요?");
 		String country = input.next();
-		if (travel==null) {
+		int index=-1;
+		for(int i=0; i<travels.size(); i++) {
+			  if(travels.get(i).getCountry().equals(country)) {
+		        	index=i;
+		        	break;
+		        	
+			  }
+		}
+		if(index>=0) {
+			travels.remove(index);
+			System.out.println(country + " 여행이 취소되었습니다.");
+		}
+		else {
 			System.out.println("여행지 등록이 안되었습니다.");
 			return;
-		}
-        if(travel.country==country) {
-        	travel=null;
-        	System.out.println("여행지가 삭제되었습니다.");
-        }
-        	
-        	
-        }
+	} 	
+}
 	public void editTravel() {
 		System.out.print("어디로 여행을 떠나실건가요?");
 		String country = input.next();
-		 if(travel.country==country) {
-	        System.out.println("선택하신 여행지는:" + country);
-	        }
-		
+		for(int i=0; i<travels.size(); i++) {
+			Travel travel = travels.get(i);
+		      if((travel.getCountry()).equals(country)) {
+			    int num=-1;
+			      while(num != 5) {
+					System.out.println("**Travel Info Edit Menu**");
+					System.out.println("1. Edit Country ");
+					System.out.println("2. Edit Day ");
+					System.out.println("3. Edit Food ");
+					System.out.println("4. Edit Activity ");
+					System.out.println("5. Exit");
+					System.out.println("Select one number between 1 - 5");
+					num = input.nextInt();
+					if(num==1) {
+						System.out.println("Travel Country");
+						String country1 = input.next();
+						travel.setCountry(country);
+					}
+					else if(num==2) {
+						System.out.println("Travel Day");
+						int day =input.nextInt();
+						travel.setDay(day);
+
+					}
+					else if(num==3) {
+						System.out.println("Local Food");
+						String food =input.next();
+						travel.setFood(food);
+
+					}
+					else if(num==4) {
+						System.out.println("Activity");
+						String activity =input.next();
+						travel.setActivity(activity);
+
+					}
+					else {
+						continue;
+					} //if
+	      	     }//while
+			 break;
+		 }//if
+		}//for
 	}
-     public void viewTravel() {
-    	System.out.print("어디로 여행을 떠나실건가요?");
- 		String country = input.next();
- 		 if(travel.country==country) {
- 	        travel.printInfo();
- 	        }
+     public void viewTravels() {
+//    	System.out.print("어디로 여행을 떠나실건가요?");
+// 		String country = input.next();
+// 
+ 	//	 if((travel.country).equals(country)) {
+ 			for(int i=0; i<travels.size(); i++) {
+ 				travels.get(i).printInfo();
+ 		 }
+   }
  		
 		
 	}
-}
+
 	
 	
 	
