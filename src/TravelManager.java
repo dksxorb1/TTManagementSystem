@@ -1,9 +1,15 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import TraveL.AllchoiceTravel;
+import TraveL.Recommendactivity;
+import TraveL.Recommendfood;
 import TraveL.Travel;
+import TraveL.TravelInput;
+import TraveL.TravelKind;
 
 public class TravelManager {
-	ArrayList <Travel> travels = new ArrayList<Travel>();
+	ArrayList <TravelInput> travels = new ArrayList<TravelInput>();
 	
 	Scanner input;
 	
@@ -13,26 +19,33 @@ public class TravelManager {
 	}
 	public void addTravel() {
 		int kind = 0;
-		Travel travel;
+		TravelInput travelInput;
 		while(kind != 1 && kind!=2) {
-		 System.out.println("1 for Asia");
-		 System.out.println("2 for Europe");
-		 System.out.println("Select num for Travel Kind between 1 and 2: ");
+		 System.out.println("1 for All choice");
+		 System.out.println("2 for Food is not decided");
+		 System.out.println("3 for Activity is not decided");
+		 System.out.println("Select num for Travel Kind between 1 and 3: ");
 		 kind = input.nextInt();
 		 if(kind==1) {
-			  travel = new Travel();
-			  travel.getUserInput(input);
-			  travels.add(travel);	
+			  travelInput = new AllchoiceTravel (TravelKind.Allchoice);
+			  travelInput.getUserInput(input);
+			  travels.add(travelInput);	
 			 break;
 		 }
 		 else if(kind==2) {
-			 travel = new Travel();
-			 travel.getUserInput(input);
-			 travels.add(travel);	
+			 travelInput = new Recommendfood(TravelKind.Recommendfood);
+			 travelInput.getUserInput(input);
+			 travels.add(travelInput);	
+			 break;
+		 }
+		 else if(kind==3) {
+			 travelInput = new Recommendactivity(TravelKind.Recommendactivity);
+			 travelInput.getUserInput(input);
+			 travels.add(travelInput);	
 			 break;
 		 }
 		 else {
-			 System.out.println("Select num for Travel Kind between 1 and 2: ");
+			 System.out.println("Select num for Travel Kind between 1 and 3: ");
 			 
 		 }
 		}
@@ -62,8 +75,8 @@ public class TravelManager {
 		System.out.print("어디로 여행을 떠나실건가요?");
 		String country = input.next();
 		for(int i=0; i<travels.size(); i++) {
-			Travel travel = travels.get(i);
-		      if((travel.getCountry()).equals(country)) {
+			TravelInput travelInput = travels.get(i);
+		      if((travelInput.getCountry()).equals(country)) {
 			    int num=-1;
 			      while(num != 5) {
 					System.out.println("**Travel Info Edit Menu**");
@@ -75,26 +88,26 @@ public class TravelManager {
 					System.out.println("Select one number between 1 - 5");
 					num = input.nextInt();
 					if(num==1) {
-						System.out.println("Travel Country");
+						System.out.println("Which country will you edit to?");
 						String country1 = input.next();
-						travel.setCountry(country);
+						travelInput .setCountry(country);
 					}
 					else if(num==2) {
-						System.out.println("Travel Day");
+						System.out.println("How long will you travel?");
 						int day =input.nextInt();
-						travel.setDay(day);
+						travelInput .setDay(day);
 
 					}
 					else if(num==3) {
-						System.out.println("Local Food");
+						System.out.println("What food would you like to edit to?");
 						String food =input.next();
-						travel.setFood(food);
+						travelInput .setFood(food);
 
 					}
 					else if(num==4) {
-						System.out.println("Activity");
+						System.out.println("What activity would you like to edit to?");
 						String activity =input.next();
-						travel.setActivity(activity);
+						travelInput .setActivity(activity);
 
 					}
 					else {
@@ -106,10 +119,6 @@ public class TravelManager {
 		}//for
 	}
      public void viewTravels() {
-//    	System.out.print("어디로 여행을 떠나실건가요?");
-// 		String country = input.next();
-// 
- 	//	 if((travel.country).equals(country)) {
  			for(int i=0; i<travels.size(); i++) {
  				travels.get(i).printInfo();
  		 }
