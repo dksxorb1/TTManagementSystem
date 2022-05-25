@@ -1,0 +1,2 @@
+5월 22, 2022 5:35:27 오후 log.EventLogger log
+정보: add a travel
