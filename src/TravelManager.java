@@ -1,19 +1,21 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import TraveL.AllchoiceTravel;
 import TraveL.Recommendactivity;
 import TraveL.Recommendfood;
-import TraveL.Travel;
 import TraveL.TravelInput;
 import TraveL.TravelKind;
 
-public class TravelManager {
+public class TravelManager implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 163205160290728555L;
+
 	ArrayList <TravelInput> travels = new ArrayList<TravelInput>();
-	
-	Scanner input;
-	
+	transient Scanner input;
 	TravelManager(Scanner input){
 		this.input=input;
 		

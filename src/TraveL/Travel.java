@@ -1,8 +1,13 @@
 package TraveL;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public abstract class Travel implements TravelInput {
+public abstract class Travel implements TravelInput, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8068512127983475842L;
 	protected TravelKind kind = TravelKind.Recommendfood;
 	protected String country;
 	protected int day;
