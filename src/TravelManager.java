@@ -9,6 +9,9 @@ import TraveL.TravelInput;
 import TraveL.TravelKind;
 
 public class TravelManager implements Serializable {
+	
+	
+	
 	/**
 	 * 
 	 */
