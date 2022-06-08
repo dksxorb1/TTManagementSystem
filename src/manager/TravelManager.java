@@ -1,3 +1,4 @@
+package manager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -5,8 +6,10 @@ import java.util.Scanner;
 import TraveL.AllchoiceTravel;
 import TraveL.Recommendactivity;
 import TraveL.Recommendfood;
+import TraveL.Travel;
 import TraveL.TravelInput;
 import TraveL.TravelKind;
+
 
 public class TravelManager implements Serializable {
 	
@@ -19,10 +22,26 @@ public class TravelManager implements Serializable {
 
 	ArrayList <TravelInput> travels = new ArrayList<TravelInput>();
 	transient Scanner input;
+	
 	TravelManager(Scanner input){
 		this.input=input;
-		
 	}
+	
+	public void setScanner(Scanner input) {
+		this.input= input;
+	}
+	
+	public void addTravel(String country, int day, String food, String activity) {
+		  TravelInput travelInput = new AllchoiceTravel (TravelKind.Allchoice);
+		  travelInput.getUserInput(input);
+		  travels.add(travelInput);	
+	}
+	
+	public void addTravel(TravelInput travelInput) {
+		  travels.add(travelInput);	
+	}
+	
+	
 	public void addTravel() {
 		int kind = 0;
 		TravelInput travelInput;
@@ -130,12 +149,19 @@ public class TravelManager implements Serializable {
 		 }//if
 		}//for
 	}
-     public void viewTravels() {
+    public void viewTravels() {
  			for(int i=0; i<travels.size(); i++) {
  				travels.get(i).printInfo();
  		 }
  	}
     
+    public int size() {
+    	return travels.size();
+    }
+    
+    public TravelInput get(int index) {
+    	return (Travel) travels.get(index);
+    }
      
      public void showEditMenu() {
     	 System.out.println("**Travel Info Edit Menu**");
@@ -147,7 +173,6 @@ public class TravelManager implements Serializable {
 			System.out.println("Select one number between 1 - 5");
     	 
      }
- 		
 		
 	}
 

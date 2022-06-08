@@ -1,3 +1,4 @@
+
 package gui;
 
 import javax.swing.JButton;
@@ -7,9 +8,19 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-public class TravelAdder extends JFrame {
+import listeners.TravelAdderCancleListener;
+import listeners.TravelAdderListener;
+import manager.TravelManager;
 
-	public TravelAdder() {
+public class TravelAdder extends JPanel {
+	
+	WindowFrame frame;
+	TravelManager travelManager;
+
+	public TravelAdder(WindowFrame frame, TravelManager travelManager) {
+		this.frame = frame;
+		this.travelManager = travelManager;
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 		
@@ -37,14 +48,18 @@ public class TravelAdder extends JFrame {
 		panel.add(lableActivity);
 		panel.add(fieldActivity);
 		
-		panel.add(new JButton("save"));  // 저장하기 위해 save 버튼을 넣어줍니다.
-		panel.add(new JButton("cancel")); // 취소하기 위해 cancle 버튼을 넣어줍니다.
+		
+		JButton saveButton = new JButton("save");
+		saveButton.addActionListener(new TravelAdderListener(fieldCountry, fieldDay, fieldFood, fieldActivity, travelManager));
+		
+		JButton cancelButton = new JButton("cancle");
+		cancelButton.addActionListener(new TravelAdderCancleListener(frame));
+		panel.add(saveButton);  // 저장하기 위해 save 버튼을 넣어줍니다.
+		panel.add(cancelButton); // 취소하기 위해 cancle 버튼을 넣어줍니다.
 		
 		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);		
-		this.setSize(300, 300);   //컴포넌트의 크기를 결정해줍니다.
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //X를 눌렀을 때 꺼지해줍니다.
 		
-		this.setContentPane(panel);  // 새로운 panel을 설정합니다.
+		this.add(panel);  // 새로운 panel을 설정합니다.
 		this.setVisible(true);  // 화면에 보이기 위해 Visible에 true를 해줍니다.
 	}
 

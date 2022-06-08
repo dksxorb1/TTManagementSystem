@@ -1,3 +1,4 @@
+
 package TraveL;
 
 public enum TravelKind {

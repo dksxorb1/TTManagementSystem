@@ -1,3 +1,4 @@
+
 package TraveL;
 
 import java.util.Scanner;
@@ -18,6 +19,6 @@ public class AllchoiceTravel extends Travel {
 	  }
 	 public void printInfo() {
 		 String skind = getKindString();
-		 System.out.println("kind " + skind + " country:" + country  +  " day:"+ day +  " food:" +  food  +   " activity:" +  activity);
+		 System.out.println("kind " + skind + " country: " + country  +  " day: "+ day +  " food: " +  food  +   " activity: " +  activity   );
 	 }
 }

@@ -1,3 +1,6 @@
+package manager;
+
+
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -7,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import gui.WindowFrame;
 import log.EventLogger;
 
 public class TravalManagementSystem {
@@ -17,8 +22,10 @@ public class TravalManagementSystem {
 		TravelManager travelManager = getObject("travelmanager.ser");
 		if(travelManager == null) {
 			travelManager = new TravelManager(input);
-		}
+		} 
+	
 		
+		WindowFrame frame = new WindowFrame(travelManager);
 		selectMenu(input, travelManager);
 		putObject(travelManager, "travelmanager.ser");
 		
@@ -61,8 +68,6 @@ public class TravalManagementSystem {
 					input.next();
 				}
 				num = -1;
-				
-				//system.exit(-1);
 			}
 		}
 		
@@ -88,6 +93,7 @@ public class TravalManagementSystem {
 			
 			in.close();
 			file.close();
+			
 		} catch (FileNotFoundException e) {
 			return travelManager;
 		} catch (IOException e) {
@@ -99,6 +105,7 @@ public class TravalManagementSystem {
 		}
 		return travelManager;
 	}
+	
 	public static void putObject(TravelManager travelManager,String filename) {
 		try {
 			FileOutputStream file = new FileOutputStream(filename);
